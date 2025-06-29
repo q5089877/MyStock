@@ -2,19 +2,18 @@ services:
 - type: web
   name: stock-123
   env: python
+  python_version: 3.11.7
   repo: https://github.com/q5089877/MyStock.git
-  buildCommand: pip install -r requirements.txt
-  startCommand: gunicorn main:app
+  buildCommand: pip install --no-cache-dir --default-timeout=100 --retries=10 -r requirements.txt
+  startCommand: gunicorn -w 3 main:app
   plan: free
   autoDeploy: true
   envVars:
-  - key: TZ
-    value: Asia/Taipei
-  - key: PYTHON_VERSION
-    value: 3.11.7
-  - key: abcedfghijklmnopqrstuvwxyz422
-    sync: false
-  - key: g1bBPN1c3v3KmyAyYzTnlxaZaUPSV1QDYuXH2SF5JKgFYMLC9l4+8dhu4mPhMBOjQ5WM5eSEoe8zTCAG0v806PXB5y5oqi2XTjvJD+
-    sync: false
-  - key: 8817424131e89568080c2185eb06c707
-    sync: false
+    - key: TZ
+      value: Asia/Taipei
+    - key: LINE_CHANNEL_ACCESS_TOKEN
+      fromSecret: LINE_CHANNEL_ACCESS_TOKEN   # 在 Render 控制台 Secret 裡設定這個變數
+    - key: LINE_CHANNEL_SECRET
+      fromSecret: LINE_CHANNEL_SECRET        # 在 Render 控制台 Secret 裡設定這個變數
+    - key: API_ACCESS_TOKEN
+      fromSecret: API_ACCESS_TOKEN           # 在 Render 控制台 Secret 裡設定這個變數
