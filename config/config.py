@@ -6,10 +6,9 @@ from linebot import LineBotApi, WebhookHandler
 # TODO: We need more complicated configuration settings
 # TODO: add typing and comment language unification
 
-
 class BasicConfig:
     """Base config class for shared configuration."""
-
+    
     # Version year
     YEAR = "2025"
 
@@ -17,14 +16,11 @@ class BasicConfig:
     VERSION = "v5.4"
 
     # Line Bot settings
-    LINE_BOT_API = LineBotApi(os.getenv(
-        "g1bBPN1c3v3KmyAyYzTnlxaZaUPSV1QDYuXH2SF5JKgFYMLC9l4+8dhu4mPhMBOjQ5WM5eSEoe8zTCAG0v806PXB5y5oqi2XTjvJD+2R8H9pSNqq1AN1qHKl6L1UHcfGZmI0elO2ApymrPZpycCJxQdB04t89/1O/w1cDnyilFU=", "default_channel_access_token"))
-    WEBHOOK_HANDLER = WebhookHandler(
-        os.getenv("8817424131e89568080c2185eb06c707", "default_channel_secret"))
+    LINE_BOT_API = LineBotApi(os.getenv("CHANNEL_ACCESS_TOKEN", "default_channel_access_token"))
+    WEBHOOK_HANDLER = WebhookHandler(os.getenv("CHANNEL_SECRET", "default_channel_secret"))
 
     # API Access Token
-    API_ACCESS_TOKEN = os.getenv(
-        "API_ACCESS_TOKEN", "default_api_access_token")
+    API_ACCESS_TOKEN = os.getenv("API_ACCESS_TOKEN", "default_api_access_token")
 
     # Data Settings
     COLUMN_RENAME_SETTING = {

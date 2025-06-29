@@ -1,8 +1,8 @@
 services:
 - type: web
-  name: stock-overflow-api
+  name: stock-123
   env: python
-  repo: https://github.com/yujunkuo/Stock-Overflow.git
+  repo: https://github.com/q5089877/MyStock.git
   buildCommand: pip install -r requirements.txt
   startCommand: gunicorn main:app
   plan: free
@@ -12,9 +12,9 @@ services:
     value: Asia/Taipei
   - key: PYTHON_VERSION
     value: 3.11.7
-  - key: API_ACCESS_TOKEN
+  - key: abcedfghijklmnopqrstuvwxyz422
     sync: false
-  - key: CHANNEL_ACCESS_TOKEN
+  - key: g1bBPN1c3v3KmyAyYzTnlxaZaUPSV1QDYuXH2SF5JKgFYMLC9l4+8dhu4mPhMBOjQ5WM5eSEoe8zTCAG0v806PXB5y5oqi2XTjvJD+
     sync: false
-  - key: CHANNEL_SECRET
+  - key: 8817424131e89568080c2185eb06c707
     sync: false
