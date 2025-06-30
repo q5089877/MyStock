@@ -7,3 +7,14 @@ services:
   startCommand: gunicorn main:app
   plan: free
   autoDeploy: true
+  envVars:
+  - key: TZ
+    value: Asia/Taipei
+  - key: PYTHON_VERSION
+    value: 3.11.7
+  - key: API_ACCESS_TOKEN
+    sync: false
+  - key: CHANNEL_ACCESS_TOKEN
+    sync: false
+  - key: CHANNEL_SECRET
+    sync: false

@@ -24,19 +24,24 @@ def update_and_broadcast(app, target_date=None, need_broadcast=False):
                 logger.info("休市不進行更新與推播")
             else:
                 logger.info("開始更新推薦清單")
-                watch_list_df_1 = _update_watch_list(market_data_df, _get_strategy_1)
+                watch_list_df_1 = _update_watch_list(
+                    market_data_df, _get_strategy_1)
                 # watch_list_df_2 = _update_watch_list(market_data_df, _get_strategy_2, other_funcs=[technical.is_sar_above_close, partial(technical.is_skyrocket, consecutive_red_no_upper_shadow_days=0)])
-                watch_list_df_3 = _update_watch_list(market_data_df, _get_strategy_3)
+                watch_list_df_3 = _update_watch_list(
+                    market_data_df, _get_strategy_3)
                 # combined_watch_list_df = pd.concat([watch_list_df_1, watch_list_df_2]).drop_duplicates(subset=["代號"]).reset_index(drop=True)
                 watch_list_dfs = [watch_list_df_1, watch_list_df_3]
                 logger.info("推薦清單更新完成")
                 logger.info("開始讀取經濟事件")
-                start_date = (target_date + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-                end_date = (target_date + datetime.timedelta(days=3)).strftime("%Y-%m-%d")
+                start_date = (
+                    target_date + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+                end_date = (target_date + datetime.timedelta(days=3)
+                            ).strftime("%Y-%m-%d")
                 economic_events = get_economic_events(start_date, end_date)
                 logger.info("經濟事件讀取完成")
                 logger.info("開始進行好友推播")
-                _broadcast_watch_list(target_date, watch_list_dfs, economic_events, need_broadcast)
+                _broadcast_watch_list(
+                    target_date, watch_list_dfs, economic_events, need_broadcast)
                 logger.info("好友推播執行完成")
 
 
@@ -59,7 +64,8 @@ def _update_market_data(target_date) -> pd.DataFrame:
         on=["代號", "名稱", "股票類型"],
     )
     # Drop the duplicated rows
-    market_data_df = market_data_df[~market_data_df.index.duplicated(keep="first")]
+    market_data_df = market_data_df[~market_data_df.index.duplicated(
+        keep="first")]
     # Sort the index
     market_data_df = market_data_df.sort_index()
     # Print TSMC data to check the correctness
@@ -80,11 +86,13 @@ def _update_watch_list(market_data_df, strategy_func, other_funcs=None) -> pd.Da
     # Get the strategy
     fundamental_mask, technical_mask, chip_mask = strategy_func(market_data_df)
     # Combine all the filters
-    watch_list_df = df_mask_helper(market_data_df, fundamental_mask + technical_mask + chip_mask)
+    watch_list_df = df_mask_helper(
+        market_data_df, fundamental_mask + technical_mask + chip_mask)
     watch_list_df = watch_list_df.sort_values(by=["產業別"], ascending=False)
     if other_funcs:
         for func in other_funcs:
-            watch_list_df = watch_list_df[watch_list_df.index.to_series().apply(func)]
+            watch_list_df = watch_list_df[watch_list_df.index.to_series().apply(
+                func)]
     return watch_list_df
 
 
@@ -93,8 +101,8 @@ def _get_strategy_1(market_data_df) -> tuple:
     # Fundamental strategy filters
     fundamental_mask = [
         # 營收成長至少其中一項 > 0%
-        (market_data_df["(月)營收月增率(%)"] > 0) |\
-        (market_data_df["(月)營收年增率(%)"] > 0) |\
+        (market_data_df["(月)營收月增率(%)"] > 0) |
+        (market_data_df["(月)營收年增率(%)"] > 0) |
         (market_data_df["(月)累積營收年增率(%)"] > 0),
     ]
 
@@ -169,10 +177,10 @@ def _get_strategy_1(market_data_df) -> tuple:
         ),
         # 今天 D9 < 90
         technical.technical_indicator_constant_check_df(
-            market_data_df, 
-            indicator="d9", 
-            direction="less", 
-            threshold=90, 
+            market_data_df,
+            indicator="d9",
+            direction="less",
+            threshold=90,
             days=1,
         ),
         # # 今天 OSC > 昨天 OSC
@@ -328,8 +336,8 @@ def _get_strategy_1(market_data_df) -> tuple:
 def _get_strategy_2(market_data_df) -> tuple:
     fundamental_mask = [
         # 營收成長至少其中一項 > 0%
-        (market_data_df["(月)營收月增率(%)"] > 0) |\
-        (market_data_df["(月)營收年增率(%)"] > 0) |\
+        (market_data_df["(月)營收月增率(%)"] > 0) |
+        (market_data_df["(月)營收年增率(%)"] > 0) |
         (market_data_df["(月)累積營收年增率(%)"] > 0),
     ]
     technical_mask = [
@@ -564,7 +572,8 @@ def _broadcast_watch_list(target_date, watch_list_dfs, economic_events, need_bro
             final_recommendation_text += f"🔎 [策略{i+1}]  無推薦股票\n"
             logger.info(f"[策略{i+1}] 無推薦股票")
         else:
-            final_recommendation_text += f"🔎 [策略{i+1}]  股票有 {len(watch_list_df)} 檔\n" + "\n###########\n\n"
+            final_recommendation_text += f"🔎 [策略{i+1}]  股票有 {len(watch_list_df)} 檔\n" + \
+                "\n###########\n\n"
             logger.info(f"[策略{i+1}] 股票有 {len(watch_list_df)} 檔")
             for stock_id, v in watch_list_df.iterrows():
                 final_recommendation_text += f"{stock_id} {v['名稱']}  {v['產業別']}\n"
@@ -576,7 +585,8 @@ def _broadcast_watch_list(target_date, watch_list_dfs, economic_events, need_bro
         logger.info("預計經濟事件")
         for event in economic_events:
             final_recommendation_text += f"{event['date']} - {event['country']} - {event['title']}\n"
-            logger.info(f"{event['date']} - {event['country']} - {event['title']}")
+            logger.info(
+                f"{event['date']} - {event['country']} - {event['title']}")
         final_recommendation_text += "\n###########\n\n"
     # Append the source information
     final_recommendation_text += f"資料來源: 台股 {str(target_date)}"

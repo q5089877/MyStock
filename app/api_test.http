@@ -1,0 +1,10 @@
+### 測試 /wakeup
+GET https://mystock-oovw.onrender.com/wakeup
+
+### 測試 /update（有推播）
+GET https://mystock-oovw.onrender.com/update
+API-Access-Token: qazwsxedcrfvtgbyhnj
+Need-Broadcast: true
+Target-Date: 2025-06-27
+
+

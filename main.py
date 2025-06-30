@@ -1,10 +1,12 @@
 import os
 from app import create_app
 
-# TODO: Unit test
-# TODO: Server availability optimization
-# TODO: Update technical strategy settings
-# TODO: Use target_date to replace today & test with specific date (skyrocket)
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s %(levelname)5s [%(name)s:%(lineno)d] %(message)s"
+)
 
 app = create_app()
 

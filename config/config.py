@@ -3,26 +3,38 @@ import os
 from models.data_type import DataType
 from linebot import LineBotApi, WebhookHandler
 
-# TODO: We need more complicated configuration settings
-# TODO: add typing and comment language unification
+# 定義所有共用設定
+
 
 class BasicConfig:
     """Base config class for shared configuration."""
-    
+
     # Version year
     YEAR = "2025"
 
     # Version number
     VERSION = "v5.4"
 
+    # ----------------------------------------------------------------
     # Line Bot settings
-    LINE_BOT_API = LineBotApi(os.getenv("CHANNEL_ACCESS_TOKEN", "default_channel_access_token"))
-    WEBHOOK_HANDLER = WebhookHandler(os.getenv("CHANNEL_SECRET", "default_channel_secret"))
+    # ----------------------------------------------------------------
+    # 強制從環境變數讀取，無預設值，若未設定將拋出 KeyError
+    CHANNEL_ACCESS_TOKEN = os.environ["CHANNEL_ACCESS_TOKEN"]
+    CHANNEL_SECRET = os.environ["CHANNEL_SECRET"]
 
+    # 初始化 LineBotApi 與 WebhookHandler
+    LINE_BOT_API = LineBotApi(CHANNEL_ACCESS_TOKEN)
+    WEBHOOK_HANDLER = WebhookHandler(CHANNEL_SECRET)
+
+    # ----------------------------------------------------------------
     # API Access Token
-    API_ACCESS_TOKEN = os.getenv("API_ACCESS_TOKEN", "default_api_access_token")
+    # ----------------------------------------------------------------
+    # 若需，透過環境變數讀取 API_ACCESS_TOKEN
+    API_ACCESS_TOKEN = os.getenv("API_ACCESS_TOKEN")
 
-    # Data Settings
+    # ----------------------------------------------------------------
+    # Data renaming settings
+    # ----------------------------------------------------------------
     COLUMN_RENAME_SETTING = {
         # TPEX Settings
         "股票代號": "代號",
@@ -65,7 +77,9 @@ class BasicConfig:
         "type": "股票類型",
     }
 
-    # Data Settings
+    # ----------------------------------------------------------------
+    # Data keep settings
+    # ----------------------------------------------------------------
     COLUMN_KEEP_SETTING = {
         DataType.PRICE: ["代號", "名稱", "開盤", "收盤", "最高", "最低", "漲跌", "成交量", "股票類型"],
         DataType.FUNDAMENTAL: ["代號", "名稱", "本益比", "股價淨值比", "殖利率(%)", "股票類型"],
