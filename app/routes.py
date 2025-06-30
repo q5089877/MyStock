@@ -80,11 +80,7 @@ def init_routes(app):
             target_date = datetime.date.today()
 
         # Determine broadcast flag
-        need_broadcast = (
-            request.headers.get("Need-Broadcast") or
-            request.args.get("need_broadcast")
-        )
-        need_broadcast = str(need_broadcast).lower() == "true"
+        need_broadcast = True
 
         # Set update flag and spawn background thread
         app.config["is_updating"] = True
