@@ -28,7 +28,7 @@ def init_routes(app):
         body = request.get_data(as_text=True)
         logger.info(f"Request body: {body}")
         try:
-            handler = current_app.config["WEBHOOK_HANDLER"]
+            handler = app.config["WEBHOOK_HANDLER"]
             handler.handle(body, signature)
         except InvalidSignatureError:
             logger.warning("Invalid signature in callback")
@@ -54,7 +54,7 @@ def init_routes(app):
         Update data and optionally broadcast stock recommendations.
         """
         # Prevent overlapping updates
-        if current_app.config.get("is_updating", False):
+        if app.config.get("is_updating", False):
             logger.warning("🚧 Update already in progress")
             return Response("Update already in progress", status=429)
 
@@ -63,7 +63,7 @@ def init_routes(app):
         if not token:
             logger.warning("Missing API-Access-Token header")
             return Response("Missing API-Access-Token", status=401)
-        if token != current_app.config.get("API_ACCESS_TOKEN"):
+        if token != app.config.get("API_ACCESS_TOKEN"):
             logger.warning("Invalid API-Access-Token header")
             return Response("Invalid API-Access-Token", status=401)
 
@@ -86,17 +86,19 @@ def init_routes(app):
             f"Starting update for {target_date}, broadcast={need_broadcast}")
 
         # Set update flag and spawn background thread
-        current_app.config["is_updating"] = True
+        app.config["is_updating"] = True
 
         def task():
-            try:
-                update_and_broadcast(
-                    current_app._get_current_object(), target_date, need_broadcast)
-            finally:
-                current_app.config["is_updating"] = False
-                logger.info("🔄 Update flag reset, ready for next request")
+            # Ensure application context for background thread
+            with app.app_context():
+                try:
+                    update_and_broadcast(app, target_date, need_broadcast)
+                finally:
+                    app.config["is_updating"] = False
+                    logger.info("🔄 Update flag reset, ready for next request")
 
-        threading.Thread(target=task, daemon=True).start()
+        thread = threading.Thread(target=task, daemon=True)
+        thread.start()
         logger.info(
             f"🚀 Spawned update task date={target_date} broadcast={need_broadcast}")
         return Response(status=200)
