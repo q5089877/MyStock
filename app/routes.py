@@ -80,10 +80,11 @@ def init_routes(app):
             target_date = datetime.date.today()
 
         # Determine broadcast flag
-        need_broadcast = request.headers.get(
-            "Need-Broadcast", "false").lower() == "true"
-        logger.info(
-            f"Starting update for {target_date}, broadcast={need_broadcast}")
+        need_broadcast = (
+            request.headers.get("Need-Broadcast") or
+            request.args.get("need_broadcast")
+        )
+        need_broadcast = str(need_broadcast).lower() == "true"
 
         # Set update flag and spawn background thread
         app.config["is_updating"] = True

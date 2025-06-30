@@ -11,7 +11,7 @@ from .crawlers import get_twse_data, get_tpex_data, get_other_data, get_economic
 
 
 # Update and broadcast the recommendation list
-def update_and_broadcast(app, target_date=None, need_broadcast=False):
+def update_and_broadcast(app, target_date=None, need_broadcast=True):
     with app.app_context():
         if not target_date:
             target_date = datetime.date.today()
