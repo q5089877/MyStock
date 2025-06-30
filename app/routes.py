@@ -4,7 +4,7 @@ import datetime
 import threading
 import logging
 
-from flask import current_app, request, Response
+from flask import request, Response
 from linebot.exceptions import InvalidSignatureError
 from .views import update_and_broadcast
 
@@ -79,23 +79,28 @@ def init_routes(app):
         else:
             target_date = datetime.date.today()
 
-        # Determine broadcast flag
-        need_broadcast = True
+        # Determine broadcast flag (header or query param, default True)
+        raw_broadcast = request.headers.get(
+            "Need-Broadcast") or request.args.get("need_broadcast")
+        if raw_broadcast is None:
+            need_broadcast = True
+        else:
+            need_broadcast = str(raw_broadcast).lower() == "true"
 
         # Set update flag and spawn background thread
         app.config["is_updating"] = True
 
         def task():
-            # Ensure application context for background thread
             with app.app_context():
                 try:
                     update_and_broadcast(app, target_date, need_broadcast)
+                except Exception:
+                    logger.exception("‼️ Update task crashed")
                 finally:
                     app.config["is_updating"] = False
                     logger.info("🔄 Update flag reset, ready for next request")
 
-        thread = threading.Thread(target=task, daemon=True)
-        thread.start()
+        threading.Thread(target=task, daemon=True).start()
         logger.info(
             f"🚀 Spawned update task date={target_date} broadcast={need_broadcast}")
         return Response(status=200)
