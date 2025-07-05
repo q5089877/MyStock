@@ -7,4 +7,11 @@ API-Access-Token: qazwsxedcrfvtgbyhnj
 Need-Broadcast: true
 Target-Date: 2025-06-27
 
+### 測試 /update（有推播）
+GET http://127.0.0.1:10000/update
+API-Access-Token: qazwsxedcrfvtgbyhnj
+Need-Broadcast: true
+Target-Date: 2025-06-27
+
+
 

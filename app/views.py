@@ -23,18 +23,18 @@ from .crawlers import get_twse_data, get_tpex_data, get_other_data, get_economic
 # =============================================================================
 # ---- 策略 1 相關 ----
 STRAT1_MIN_CLOSE_PRICE = 10                 # 收盤價 > 20
-STRAT1_RED_K_RATIO = 1.0                   # 收盤 / 開盤 > 1.01 (紅 K 且實體漲幅 > 1%)
+STRAT1_RED_K_RATIO = 0.995                   # 收盤 / 開盤 > 1.01 (紅 K 且實體漲幅 > 1%)
 STRAT1_BREAK_HIGH_RATIO = 1.00              # 今日收盤 > 昨日最高 * 1.00
 STRAT1_K9_DIFF_THRESHOLD = 50               # |K9 - D9| < 22
 STRAT1_J9_UPPER_LIMIT = 80                 # J9 < 100
-STRAT1_TWO_DAY_GAIN_RATIO = 1.01            # 今日收盤 > 昨日收盤 * 1.02 (漲幅 2%)
+STRAT1_TWO_DAY_GAIN_RATIO = 1.005            # 今日收盤 > 昨日收盤 * 1.02 (漲幅 2%)
 STRAT1_LIMIT_UP_RATIO = 1.02                # 連續兩日漲幅 5% 以上
-STRAT1_UPPER_SHADOW_THRESHOLD = 0.03        # 上影線長度 < 昨收 * 3%
-STRAT1_SKYROCKET_N_DAYS = 3               # 飆股判斷區間天數
-STRAT1_SKYROCKET_K_CHANGE = 0.20            # 飆股判斷 K 變動幅度
-STRAT1_VOLUME_THRESHOLD = 500              # 今日成交量 > 2000
-STRAT1_MEAN5_VOLUME_THRESHOLD = 1000        # 5 日均量 > 1000
-STRAT1_MEAN20_VOLUME_THRESHOLD = 1000       # 20 日均量 > 1000
+STRAT1_UPPER_SHADOW_THRESHOLD = 0.06        # 上影線長度 < 昨收 * 3%
+STRAT1_SKYROCKET_N_DAYS = 5               # 飆股判斷區間天數
+STRAT1_SKYROCKET_K_CHANGE = 0.12            # 飆股判斷 K 變動幅度
+STRAT1_VOLUME_THRESHOLD = 400              # 今日成交量 > 2000
+STRAT1_MEAN5_VOLUME_THRESHOLD = 800        # 5 日均量 > 1000
+STRAT1_MEAN20_VOLUME_THRESHOLD = 800       # 20 日均量 > 1000
 
 # ---- 策略 2 相關 ----
 STRAT2_MIN_CLOSE_PRICE = 20
@@ -43,8 +43,8 @@ STRAT2_VOLUME_THRESHOLD = 1500
 
 # ---- 策略 3 相關 ----
 STRAT3_MIN_CLOSE_PRICE = 20
-STRAT3_ONE_DAY_GAIN_RATIO = 1.01
-STRAT3_K9_LOWER_LIMIT = 20
+STRAT3_ONE_DAY_GAIN_RATIO = 1.003
+STRAT3_K9_LOWER_LIMIT = 15
 STRAT3_VOLUME_THRESHOLD = 200
 
 # =============================================================================

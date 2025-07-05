@@ -113,3 +113,49 @@
  * Running on http://127.0.0.1:10000
  * Running on http://192.168.0.110:10000
 2025-07-05 08:14:47 INFO [werkzeug] [33mPress CTRL+C to quit[0m
+2025-07-05 23:03:17 +0800  INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:10000
+ * Running on http://192.168.0.110:10000
+2025-07-05 23:03:17 +0800  INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+2025-07-05 23:03:27 +0800 WARNING [app.routes:67] Invalid API-Access-Token header
+2025-07-05 23:03:27 +0800  INFO [werkzeug:97] 127.0.0.1 - - [05/Jul/2025 23:03:27] "[31m[1mGET /update HTTP/1.1[0m" 401 -
+2025-07-05 23:03:38 +0800 WARNING [app.routes:67] Invalid API-Access-Token header
+2025-07-05 23:03:38 +0800  INFO [werkzeug:97] 127.0.0.1 - - [05/Jul/2025 23:03:38] "[31m[1mGET /update HTTP/1.1[0m" 401 -
+[2025-07-05 23:04:50 +0800] [15656] [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:10000
+ * Running on http://192.168.0.110:10000
+[2025-07-05 23:04:50 +0800] [15656] [INFO] [33mPress CTRL+C to quit[0m
+[2025-07-05 23:04:53 +0800] [15656] [INFO] 資料日期 2025-06-27
+[2025-07-05 23:04:53 +0800] [15656] [INFO] 🚀 Spawned update task date=2025-06-27 broadcast=True
+[2025-07-05 23:04:53 +0800] [15656] [INFO] 127.0.0.1 - - [05/Jul/2025 23:04:53] "GET /update HTTP/1.1" 200 -
+[2025-07-05 23:04:58 +0800] [15656] [INFO] 取得上市資料表花費時間: 0:00:04
+[2025-07-05 23:05:00 +0800] [15656] [INFO] 取得上櫃資料表花費時間: 0:00:02
+[2025-07-05 23:06:40 +0800] [15656] [INFO] Processed technical data: 100/2426, stock_id = 1455
+[2025-07-05 23:08:15 +0800] [15656] [INFO] Processed technical data: 200/2426, stock_id = 1710
+[2025-07-05 23:09:45 +0800] [15656] [INFO] Processed technical data: 300/2426, stock_id = 2101
+[2025-07-05 23:11:24 +0800] [15656] [INFO] Processed technical data: 400/2426, stock_id = 2382
+[2025-07-05 23:13:16 +0800] [15656] [INFO] Processed technical data: 500/2426, stock_id = 2496
+[2025-07-05 23:14:53 +0800] [15656] [INFO] Processed technical data: 601/2426, stock_id = 2809
+[2025-07-05 23:16:38 +0800] [15656] [INFO] Processed technical data: 700/2426, stock_id = 3036
+[2025-07-05 23:18:17 +0800] [15656] [INFO] Processed technical data: 800/2426, stock_id = 3252
+[2025-07-05 23:19:53 +0800] [15656] [INFO] Processed technical data: 901/2426, stock_id = 3520
+[2025-07-05 23:21:34 +0800] [15656] [INFO] Processed technical data: 1000/2426, stock_id = 3689
+[2025-07-05 23:23:04 +0800] [15656] [INFO] Processed technical data: 1100/2426, stock_id = 4420
+[2025-07-05 23:24:47 +0800] [15656] [INFO] Processed technical data: 1200/2426, stock_id = 4744
+[2025-07-05 23:26:20 +0800] [15656] [INFO] Processed technical data: 1300/2426, stock_id = 5227
+[2025-07-05 23:27:52 +0800] [15656] [INFO] Processed technical data: 1400/2426, stock_id = 5498
+[2025-07-05 23:29:39 +0800] [15656] [INFO] Processed technical data: 1500/2426, stock_id = 6147
+[2025-07-05 23:31:06 +0800] [15656] [INFO] Processed technical data: 1600/2426, stock_id = 6266
+[2025-07-05 23:32:39 +0800] [15656] [INFO] Processed technical data: 1700/2426, stock_id = 6532
+[2025-07-05 23:34:09 +0800] [15656] [INFO] Processed technical data: 1800/2426, stock_id = 6670
+[2025-07-05 23:35:46 +0800] [15656] [INFO] Processed technical data: 1900/2426, stock_id = 6811
+[2025-07-05 23:37:14 +0800] [15656] [INFO] Processed technical data: 2000/2426, stock_id = 6934
+[2025-07-05 23:38:43 +0800] [15656] [INFO] Processed technical data: 2100/2426, stock_id = 7737
+[2025-07-05 23:40:26 +0800] [15656] [INFO] Processed technical data: 2200/2426, stock_id = 8046
+[2025-07-05 23:42:03 +0800] [1044] [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:10000
+ * Running on http://192.168.0.110:10000
+[2025-07-05 23:42:03 +0800] [1044] [INFO] [33mPress CTRL+C to quit[0m
