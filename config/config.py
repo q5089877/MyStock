@@ -1,7 +1,12 @@
 import os
 
+from dotenv import load_dotenv
 from models.data_type import DataType
 from linebot import LineBotApi, WebhookHandler
+
+# Load environment variables from a .env file in the project root.
+# This is great for local development and will not override existing system-wide variables.
+load_dotenv()
 
 # 定義所有共用設定
 
@@ -18,9 +23,16 @@ class BasicConfig:
     # ----------------------------------------------------------------
     # Line Bot settings
     # ----------------------------------------------------------------
-    # 強制從環境變數讀取，無預設值，若未設定將拋出 KeyError
-    CHANNEL_ACCESS_TOKEN = os.environ["CHANNEL_ACCESS_TOKEN"]
-    CHANNEL_SECRET = os.environ["CHANNEL_SECRET"]
+    # 從環境變數讀取 Line Bot 設定
+    CHANNEL_ACCESS_TOKEN = os.getenv("CHANNEL_ACCESS_TOKEN")
+    CHANNEL_SECRET = os.getenv("CHANNEL_SECRET")
+
+    # 驗證必要的環境變數是否已設定
+    if not CHANNEL_ACCESS_TOKEN or not CHANNEL_SECRET:
+        raise ValueError(
+            "Missing required environment variables: CHANNEL_ACCESS_TOKEN or CHANNEL_SECRET. "
+            "Please create a .env file in the project root and add these values."
+        )
 
     # 初始化 LineBotApi 與 WebhookHandler
     LINE_BOT_API = LineBotApi(CHANNEL_ACCESS_TOKEN)
