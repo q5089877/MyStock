@@ -41,7 +41,7 @@ STRAT2_MIN_CLOSE_PRICE = 20
 STRAT2_J9_UPPER_LIMIT = 100
 STRAT2_VOLUME_THRESHOLD = 1500
 
-// ---- 策略 3 相關 - ---
+# ---- 策略 3 相關 - ---
 STRAT3_MIN_CLOSE_PRICE = 20.0           # 收盤價 > 20
 STRAT3_ONE_DAY_GAIN_RATIO = 1.003   # 今日收盤 > 昨日收盤 * 1.003 (漲幅 0.3 % )
 STRAT3_K9_LOWER_LIMIT = 15.0  # K9 > 15，代表 KD 指標 K 線需大於 15
