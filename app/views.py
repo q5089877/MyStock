@@ -25,7 +25,7 @@ from .crawlers import get_twse_data, get_tpex_data, get_other_data, get_economic
 STRAT1_MIN_CLOSE_PRICE = 20.0   # 收盤價 > 20
 STRAT1_RED_K_RATIO = 1.01   # 收盤 / 開盤 > 1.01（紅 K，實體漲幅 ≥1%）
 STRAT1_BREAK_HIGH_RATIO = 0.997  # 今日收盤 > 昨日最高 * 0.997（接近創高即可）
-STRAT1_K9_DIFF_THRESHOLD = 65     # |K9 - D9| < 65（放寬 KD 差）
+STRAT1_K9_DIFF_THRESHOLD = 30     # |K9 - D9| < 65（放寬 KD 差）
 STRAT1_J9_UPPER_LIMIT = 90     # J9 < 90
 STRAT1_TWO_DAY_GAIN_RATIO = 1.01   # 今日收盤 > 昨日收盤 * 1.01（漲幅 ≥1%）
 STRAT1_LIMIT_UP_RATIO = 1.05   # 連續兩日漲幅 > 5% 才視為過熱（提高門檻）
