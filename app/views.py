@@ -21,20 +21,20 @@ from .crawlers import get_twse_data, get_tpex_data, get_other_data, get_economic
 # =============================================================================
 # 全域參數（依需求自行調整）
 # =============================================================================
-# ---- 策略 1 相關 ----
-STRAT1_MIN_CLOSE_PRICE = 10                 # 收盤價 > 20
-STRAT1_RED_K_RATIO = 0.995                   # 收盤 / 開盤 > 1.01 (紅 K 且實體漲幅 > 1%)
-STRAT1_BREAK_HIGH_RATIO = 1.00              # 今日收盤 > 昨日最高 * 1.00
-STRAT1_K9_DIFF_THRESHOLD = 50               # |K9 - D9| < 22
-STRAT1_J9_UPPER_LIMIT = 80                 # J9 < 100
-STRAT1_TWO_DAY_GAIN_RATIO = 1.005            # 今日收盤 > 昨日收盤 * 1.02 (漲幅 2%)
-STRAT1_LIMIT_UP_RATIO = 1.02                # 連續兩日漲幅 5% 以上
-STRAT1_UPPER_SHADOW_THRESHOLD = 0.06        # 上影線長度 < 昨收 * 3%
-STRAT1_SKYROCKET_N_DAYS = 6               # 飆股判斷區間天數
-STRAT1_SKYROCKET_K_CHANGE = 0.12            # 飆股判斷 K 變動幅度
-STRAT1_VOLUME_THRESHOLD = 400              # 今日成交量 > 2000
-STRAT1_MEAN5_VOLUME_THRESHOLD = 800        # 5 日均量 > 1000
-STRAT1_MEAN20_VOLUME_THRESHOLD = 800       # 20 日均量 > 1000
+# ---- 策略 1 相關（2025-07-06 調整版）----
+STRAT1_MIN_CLOSE_PRICE = 20.0   # 收盤價 > 20
+STRAT1_RED_K_RATIO = 1.01   # 收盤 / 開盤 > 1.01（紅 K，實體漲幅 ≥1%）
+STRAT1_BREAK_HIGH_RATIO = 0.997  # 今日收盤 > 昨日最高 * 0.997（接近創高即可）
+STRAT1_K9_DIFF_THRESHOLD = 65     # |K9 - D9| < 65（放寬 KD 差）
+STRAT1_J9_UPPER_LIMIT = 90     # J9 < 90
+STRAT1_TWO_DAY_GAIN_RATIO = 1.01   # 今日收盤 > 昨日收盤 * 1.01（漲幅 ≥1%）
+STRAT1_LIMIT_UP_RATIO = 1.05   # 連續兩日漲幅 > 5% 才視為過熱（提高門檻）
+STRAT1_UPPER_SHADOW_THRESHOLD = 0.06   # 上影線長度 < 昨收 * 6%
+STRAT1_SKYROCKET_N_DAYS = 6      # 飆股判斷區間天數
+STRAT1_SKYROCKET_K_CHANGE = 0.12   # 飆股判斷 K 變動幅度
+STRAT1_VOLUME_THRESHOLD = 200    # 今日成交量 > 200 張
+STRAT1_MEAN5_VOLUME_THRESHOLD = 500    # 5 日均量 > 500 張
+STRAT1_MEAN20_VOLUME_THRESHOLD = 500    # 20 日均量 > 500 張
 
 # ---- 策略 2 相關 ----
 STRAT2_MIN_CLOSE_PRICE = 20
