@@ -30,7 +30,7 @@ STRAT1_J9_UPPER_LIMIT = 80                 # J9 < 100
 STRAT1_TWO_DAY_GAIN_RATIO = 1.005            # 今日收盤 > 昨日收盤 * 1.02 (漲幅 2%)
 STRAT1_LIMIT_UP_RATIO = 1.02                # 連續兩日漲幅 5% 以上
 STRAT1_UPPER_SHADOW_THRESHOLD = 0.06        # 上影線長度 < 昨收 * 3%
-STRAT1_SKYROCKET_N_DAYS = 5               # 飆股判斷區間天數
+STRAT1_SKYROCKET_N_DAYS = 6               # 飆股判斷區間天數
 STRAT1_SKYROCKET_K_CHANGE = 0.12            # 飆股判斷 K 變動幅度
 STRAT1_VOLUME_THRESHOLD = 400              # 今日成交量 > 2000
 STRAT1_MEAN5_VOLUME_THRESHOLD = 800        # 5 日均量 > 1000
@@ -41,11 +41,11 @@ STRAT2_MIN_CLOSE_PRICE = 20
 STRAT2_J9_UPPER_LIMIT = 100
 STRAT2_VOLUME_THRESHOLD = 1500
 
-# ---- 策略 3 相關 ----
-STRAT3_MIN_CLOSE_PRICE = 20
-STRAT3_ONE_DAY_GAIN_RATIO = 1.003
-STRAT3_K9_LOWER_LIMIT = 15
-STRAT3_VOLUME_THRESHOLD = 200
+// ---- 策略 3 相關 - ---
+STRAT3_MIN_CLOSE_PRICE = 20.0 // 收盤價 > 20
+STRAT3_ONE_DAY_GAIN_RATIO   = 1.003   // 今日收盤 > 昨日收盤 * 1.003 (漲幅 0.3 % )
+STRAT3_K9_LOWER_LIMIT = 15.0 // K9 > 15，代表 KD 指標 K 線需大於 15
+STRAT3_VOLUME_THRESHOLD = 200 // 當日成交量 > 200
 
 # =============================================================================
 # 主流程
