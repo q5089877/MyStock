@@ -421,7 +421,7 @@ def _broadcast_watch_list(target_date, watch_list_dfs, economic_events, need_bro
         final_recommendation_text += "\n###########\n\n"
 
     final_recommendation_text += f"資料來源: 台股 {str(target_date)}"
-    final_recommendation_text += f"\nJohnKuo © {current_app.config['YEAR']} ({current_app.config['VERSION']})"
+    final_recommendation_text += f"\nNeil網路找來的🎶☀☘︎ © {current_app.config['YEAR']} ({current_app.config['VERSION']})"
 
     if need_broadcast:
         line_bot_api = current_app.config['LINE_BOT_API']
