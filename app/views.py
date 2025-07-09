@@ -175,7 +175,7 @@ def _update_watch_list(market_data_df: pd.DataFrame,
 # =============================================================================
 def _get_strategy_1(market_data_df) -> tuple:
     """
-    策略 1：成長 + 均線多頭排列 + 飆股潛力
+
     """
     fundamental_mask = [
         # 營收成長至少其中一項 > 0%
@@ -331,7 +331,7 @@ def _get_strategy_2(market_data_df) -> tuple:
 
 def _get_strategy_3(market_data_df) -> tuple:
     """
-    策略 3：回檔後轉強 + 飆股條件
+  
     """
     fundamental_mask = []
 
